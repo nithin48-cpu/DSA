@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
+#include <stdarg.h>
+#include<math.h>
 
 struct Node{
     int data;
@@ -67,8 +69,53 @@ int postordertraversal(struct Node* root)
     return 0;
 }
 
+/*
+int levelordertraversal(struct Node* root)
+{
+    Queue q;  // c is not object oriented language so it not have the queue library in c,but have in c++
+    q.add(root);
+    while()
+    if(root!=NULL)
+    {
 
+    }
+    return 0;
+}
+*/
 
+int NumofNode(struct Node* root)
+{
+    if(root==NULL)
+        return 0;
+    else{
+        int left=NumofNode(root->left);
+        int right=NumofNode(root->right);
+        return left+right+1;
+    }
+}
+
+int SumofNode(struct Node* root)
+{
+    if(root==NULL)
+        return 0;
+    else{
+        int left=SumofNode(root->left);
+        int right=SumofNode(root->right);
+        return left+right+root->data;
+    }
+}
+
+int height(struct Node* root)
+{
+    if(root==NULL)
+        return 0;
+    else{
+        int left=height(root->left);
+        int right=height(root->right);
+        return fmax(left,right)+1;
+    }
+
+}
 
 int main()
 {
@@ -80,6 +127,8 @@ int main()
     inordertraversal(root);
     printf("\n");
     preordertraversal(root);
-
+    printf("\nNumber of Node: %d",NumofNode(root));
+    printf("\nSum of Node: %d",SumofNode(root));
+    printf("\nHeight of Tree: %d",height(root));
     return 0;
 }
